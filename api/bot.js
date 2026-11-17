@@ -15,49 +15,47 @@ const LANGS = {
   en: {
     name: "English 🇬🇧",
     welcome: "Welcome {name} 🥰!\nPlease select your language to start the bot!",
-    joinReq: "❌ **Channel Access Required!**\n\nPlease join our official channel first to use Magic Scripts Bot:\n🔗 {link}",
+    joinReq: "❌ Channel Access Required!\n\nPlease join our official channel first to use Magic Scripts Bot:\n🔗 {link}",
     checkJoin: "🔄 Check Membership",
     lockTitle: "🔒 LOCKED SCREEN",
-    lockDesc: "Your device/user ID is not active. Send your ID to admin for approval.",
+    lockDesc: "Your Telegram ID is not active. Send your ID to admin for approval.",
     copyId: "📋 Copy ID",
     unlocked: "🔓 **MAGIC SCRIPTS TRADING BOT**\n\nWelcome to the official live signal engine.",
-    pairSel: "📊 **Select Currency / Asset Pair:**",
-    timeSel: "⏱️ **Select Timeframe:**",
     rules: "📜 **Terms & Rules:**\n1. Use signals at your own risk.\n2. Do not spam requests.\n3. Maintain proper risk management.",
     faq: "❓ **FAQ:**\n- How to unlock? Send your ID to support.\n- Accuracy? 80% - 90% AI-driven.",
     back: "⬅️ Back",
+    mainMenu: "🏠 Main Menu",
     next: "➡️ Next",
     getSignal: "⚡ GET SIGNAL",
-    analyzing: "analysing market trends...",
+    analyzing: "Analysing market trends...",
     signalRes: "🎯 **SIGNAL GENERATED**\n\nAsset: **{pair}**\nTimeframe: **{tf}**\nDirection: **{dir}**\nAccuracy: **{acc}**\nReason: *{reason}*",
     support: "💬 Support"
   },
   ur: {
     name: "Urdu 🇵🇰",
     welcome: "Khushamdid {name} 🥰!\nBot shuru karne ke liye apni zaban muntakhib karein!",
-    joinReq: "❌ **Channel Join Karna Lazmi Hai!**\n\nMagic Scripts Bot istemal karne ke liye pehle hamara official channel join karein:\n🔗 {link}",
+    joinReq: "❌ Channel Join Karna Lazmi Hai!\n\nMagic Scripts Bot istemal karne ke liye pehle hamara official channel join karein:\n🔗 {link}",
     checkJoin: "🔄 Membership Check Karein",
     lockTitle: "🔒 LOCKED SCREEN",
-    lockDesc: "Aapki ID active nahi hai. Manzoori ke liye admin ko ID bhejein.",
+    lockDesc: "Aapki Telegram ID active nahi hai. Manzoori ke liye admin ko ID bhejein.",
     copyId: "📋 ID Copy Karein",
     unlocked: "🔓 **MAGIC SCRIPTS TRADING BOT**\n\nOfficial live signal engine mein خوش آمدید.",
-    pairSel: "📊 **Currency / Asset Pair Muntakhib Karein:**",
-    timeSel: "⏱️ **Timeframe Muntakhib Karein:**",
     rules: "📜 **Terms & Rules:**\n1. Signals apni zimmedari par use karein.\n2. Spam na karein.",
     faq: "❓ **FAQ:**\n- Unlock kaise karein? Support se rabta karein.",
     back: "⬅️ Peechay",
+    mainMenu: "🏠 Main Menu",
     next: "➡️ Aage",
     getSignal: "⚡ GET SIGNAL",
-    analyzing: "market trends analyze ho rahe hain...",
+    analyzing: "Market trends analyze ho rahe hain...",
     signalRes: "🎯 **SIGNAL GENERATED**\n\nAsset: **{pair}**\nTimeframe: **{tf}**\nDirection: **{dir}**\nAccuracy: **{acc}**",
     support: "💬 Support"
   },
-  ar: { name: "Arabic 🇸🇦", welcome: "أهلاً بك {name} 🥰!\nالرجاء اختيار لغتك لبدء البوت!", joinReq: "❌ **يجب انضمام القناة!**\n\n🔗 {link}", checkJoin: "🔄 تحقق من الانضمام", lockTitle: "🔒 شاشة مقفلة", lockDesc: "معرفك غير نشط.", copyId: "📋 نسخ المعرف", unlocked: "🔓 **تداول Magic Scripts**", pairSel: "📊 اختر الزوج:", timeSel: "⏱️ اختر الإطار الزمني:", rules: "📜 الشروط والأحكام", faq: "❓ الأسئلة الشائعة", back: "⬅️ رجوع", next: "➡️ التالي", getSignal: "⚡ احصل على إشارة", analyzing: "جاري تحليل السوق...", signalRes: "🎯 **إشارة جديدة**\nالزوج: {pair}\nالاتجاه: {dir}", support: "💬 الدعم" },
-  hi: { name: "Hindi 🇮🇳", welcome: "स्वागत है {name} 🥰!\nकृपया भाषा चुनें!", joinReq: "❌ **चैनल ज्वाइन करना अनिवार्य है!**\n\n🔗 {link}", checkJoin: "🔄 सदस्यता जाँच करें", lockTitle: "🔒 लॉक स्क्रीन", lockDesc: "ID सक्रिय नहीं है।", copyId: "📋 ID कॉपी करें", unlocked: "🔓 **Magic Scripts Bot**", pairSel: "📊 पेयर चुनें:", timeSel: "⏱️ टाइमफ्रेम चुनें:", rules: "📜 नियम", faq: "❓ सामान्य سوال", back: "⬅️ पीछे", next: "➡️ आगे", getSignal: "⚡ सिग्नल प्राप्त करें", analyzing: "मार्केट एनालाइज हो रहा है...", signalRes: "🎯 **सिग्नल**\nपेयर: {pair}\nदिशा: {dir}", support: "💬 सहायता" },
-  es: { name: "Spanish 🇪🇸", welcome: "¡Bienvenido {name} 🥰!\n¡Selecciona tu idioma!", joinReq: "❌ ¡Únete al canal oficial!\n🔗 {link}", checkJoin: "🔄 Verificar", lockTitle: "🔒 BLOQUEADO", lockDesc: "ID no activo.", copyId: "📋 Copiar ID", unlocked: "🔓 **MAGIC SCRIPTS**", pairSel: "📊 Selecciona par:", timeSel: "⏱️ Selecciona tiempo:", rules: "📜 Reglas", faq: "❓ FAQ", back: "⬅️ Atrás", next: "➡️ Siguiente", getSignal: "⚡ OBTENER SEÑAL", analyzing: "Analizando mercado...", signalRes: "🎯 Par: {pair} | Dir: {dir}", support: "💬 Soporte" },
-  fr: { name: "French 🇫🇷", welcome: "Bienvenue {name} 🥰!\nChoisissez votre langue !", joinReq: "❌ Rejoignez la chaîne !\n🔗 {link}", checkJoin: "🔄 Vérifier", lockTitle: "🔒 VERROUILLÉ", lockDesc: "ID non actif.", copyId: "📋 Copier l'ID", unlocked: "🔓 **MAGIC SCRIPTS**", pairSel: "📊 Choisir la paire :", timeSel: "⏱️ Temps :", rules: "📜 Règles", faq: "❓ FAQ", back: "⬅️ Retour", next: "➡️ Suivant", getSignal: "⚡ OBTENIR SIGNAL", analyzing: "Analyse en cours...", signalRes: "🎯 Paire : {pair} | Dir : {dir}", support: "💬 Support" },
-  tr: { name: "Turkish 🇹🇷", welcome: "Hoş geldin {name} 🥰!\nDilini seç!", joinReq: "❌ Kanalımıza katılmalısın!\n🔗 {link}", checkJoin: "🔄 Kontrol Et", lockTitle: "🔒 KİLİTLİ", lockDesc: "ID aktif değil.", copyId: "📋 ID Kopyala", unlocked: "🔓 **MAGIC SCRIPTS**", pairSel: "📊 Parite Seç:", timeSel: "⏱️ Süre Seç:", rules: "📜 Kurallar", faq: "❓ SSS", back: "⬅️ Geri", next: "➡️ İleri", getSignal: "⚡ SİNYAL AL", analyzing: "Piyasa taranıyor...", signalRes: "🎯 Parite: {pair} | Yön: {dir}", support: "💬 Destek" },
-  ru: { name: "Russian 🇷🇺", welcome: "Добро пожаловать {name} 🥰!\nВыберите язык!", joinReq: "❌ Подпишитесь на канал!\n🔗 {link}", checkJoin: "🔄 Проверить", lockTitle: "🔒 ЗАБЛОКИРОВАНО", lockDesc: "ID не активен.", copyId: "📋 Копировать ID", unlocked: "🔓 **MAGIC SCRIPTS**", pairSel: "📊 Выберите пару:", timeSel: "⏱️ Время:", rules: "📜 Правила", faq: "❓ FAQ", back: "⬅️ Назад", next: "➡️ Вперед", getSignal: "⚡ ПОЛУЧИТЬ СИГНАЛ", analyzing: "Анализ рынка...", signalRes: "🎯 Пара: {pair} | Напр: {dir}", support: "💬 Поддержка" }
+  ar: { name: "Arabic 🇸🇦", welcome: "أهلاً بك {name} 🥰!\nالرجاء اختيار لغتك لبدء البوت!", joinReq: "❌ يجب انضمام القناة!\n🔗 {link}", checkJoin: "🔄 تحقق من الانضمام", lockTitle: "🔒 شاشة مقفلة", lockDesc: "معرفك غير نشط.", copyId: "📋 نسخ المعرف", unlocked: "🔓 **تداول Magic Scripts**", rules: "📜 الشروط والأحكام", faq: "❓ الأسئلة الشائعة", back: "⬅️ رجوع", mainMenu: "🏠 القائمة الرئيسية", next: "➡️ التالي", getSignal: "⚡ احصل على إشارة", analyzing: "جاري تحليل السوق...", signalRes: "🎯 **إشارة جديدة**\nالزوج: {pair}\nالاتجاه: {dir}", support: "💬 الدعم" },
+  hi: { name: "Hindi 🇮🇳", welcome: "स्वागत है {name} 🥰!\nकृपया भाषा चुनें!", joinReq: "❌ चैनल ज्वाइन करना अनिवार्य है!\n🔗 {link}", checkJoin: "🔄 सदस्यता जाँच करें", lockTitle: "🔒 लॉक स्क्रीन", lockDesc: "ID सक्रिय नहीं है।", copyId: "📋 ID कॉपी करें", unlocked: "🔓 **Magic Scripts Bot**", rules: "📜 नियम", faq: "❓ सामान्य سوال", back: "⬅️ पीछे", mainMenu: "🏠 मुख्य मेनू", next: "➡️ आगे", getSignal: "⚡ सिग्नल प्राप्त करें", analyzing: "मार्केट एनालाइज हो रहा है...", signalRes: "🎯 **सिग्नल**\nपेयर: {pair}\nदिशा: {dir}", support: "💬 सहायता" },
+  es: { name: "Spanish 🇪🇸", welcome: "¡Bienvenido {name} 🥰!\n¡Selecciona tu idioma!", joinReq: "❌ ¡Únete al canal oficial!\n🔗 {link}", checkJoin: "🔄 Verificar", lockTitle: "🔒 BLOQUEADO", lockDesc: "ID no activo.", copyId: "📋 Copiar ID", unlocked: "🔓 **MAGIC SCRIPTS**", rules: "📜 Reglas", faq: "❓ FAQ", back: "⬅️ Atrás", mainMenu: "🏠 Menú Principal", next: "➡️ Siguiente", getSignal: "⚡ OBTENER SEÑAL", analyzing: "Analizando mercado...", signalRes: "🎯 Par: {pair} | Dir: {dir}", support: "💬 Soporte" },
+  fr: { name: "French 🇫🇷", welcome: "Bienvenue {name} 🥰!\nChoisissez votre langue !", joinReq: "❌ Rejoignez la chaîne !\n🔗 {link}", checkJoin: "🔄 Vérifier", lockTitle: "🔒 VERROUILLÉ", lockDesc: "ID non actif.", copyId: "📋 Copier l'ID", unlocked: "🔓 **MAGIC SCRIPTS**", rules: "📜 Règles", faq: "❓ FAQ", back: "⬅️ Retour", mainMenu: "🏠 Menu Principal", next: "➡️ Suivant", getSignal: "⚡ OBTENIR SIGNAL", analyzing: "Analyse en cours...", signalRes: "🎯 Paire : {pair} | Dir : {dir}", support: "💬 Support" },
+  tr: { name: "Turkish 🇹🇷", welcome: "Hoş geldin {name} 🥰!\nDilini seç!", joinReq: "❌ Kanalımıza katılmalısın!\n🔗 {link}", checkJoin: "🔄 Kontrol Et", lockTitle: "🔒 KİLİTLİ", lockDesc: "ID aktif değil.", copyId: "📋 ID Kopyala", unlocked: "🔓 **MAGIC SCRIPTS**", rules: "📜 Kurallar", faq: "❓ SSS", back: "⬅️ Geri", mainMenu: "🏠 Ana Menü", next: "➡️ İleri", getSignal: "⚡ SİNYAL AL", analyzing: "Piyasa taranıyor...", signalRes: "🎯 Parite: {pair} | Yön: {dir}", support: "💬 Destek" },
+  ru: { name: "Russian 🇷🇺", welcome: "Добро пожаловать {name} 🥰!\nВыберите язык!", joinReq: "❌ Подпишитесь на канал!\n🔗 {link}", checkJoin: "🔄 Проверить", lockTitle: "🔒 ЗАБЛОКИРОВАНО", lockDesc: "ID не активен.", copyId: "📋 Копировать ID", unlocked: "🔓 **MAGIC SCRIPTS**", rules: "📜 Правила", faq: "❓ FAQ", back: "⬅️ Назад", mainMenu: "🏠 Главное меню", next: "➡️ Вперед", getSignal: "⚡ ПОЛУЧИТЬ СИГНАЛ", analyzing: "Анализ рынка...", signalRes: "🎯 Пара: {pair} | Напр: {dir}", support: "💬 Поддержка" }
 };
 
 const PAIRS = [
@@ -101,7 +99,7 @@ async function checkExternalUnlock(deviceId) {
 }
 
 async function renderState(chatId, token, editMessageId = null) {
-  let session = sessions[chatId] || { lang: 'en', step: 'lang', pairIdx: 0, tfIdx: 0, deviceId: String(chatId).padStart(20, '0') };
+  let session = sessions[chatId] || { lang: 'en', step: 'lang', pairIdx: 0, tfIdx: 0 };
   sessions[chatId] = session;
   const langDict = LANGS[session.lang] || LANGS.en;
 
@@ -131,15 +129,15 @@ async function renderState(chatId, token, editMessageId = null) {
     return;
   }
 
-  const isUnlocked = await checkExternalUnlock(session.deviceId);
+  const isUnlocked = await checkExternalUnlock(chatId);
   if (!isUnlocked) {
     const keyboard = {
       inline_keyboard: [
-        [ { text: langDict.copyId, callback_data: `copy|${session.deviceId}` } ],
+        [ { text: langDict.copyId, callback_data: `copy|${chatId}` } ],
         [ { text: langDict.support, url: SUPPORT_LINK }, { text: langDict.checkJoin, callback_data: "check_join" } ]
       ]
     };
-    const msg = `${langDict.lockTitle}\n\n${langDict.lockDesc}\n\n🆔 **Your 20-Digit ID:**\n\`${session.deviceId}\``;
+    const msg = `${langDict.lockTitle}\n\n${langDict.lockDesc}\n\n🆔 **Your Telegram ID:**\n\`${chatId}\``;
     await sendOrEdit(chatId, token, editMessageId, msg, keyboard);
     return;
   }
@@ -163,7 +161,11 @@ async function renderState(chatId, token, editMessageId = null) {
 
   if (session.step === 'rules' || session.step === 'faq') {
     const content = session.step === 'rules' ? langDict.rules : langDict.faq;
-    const keyboard = { inline_keyboard: [ [ { text: langDict.back, callback_data: "back_dashboard" } ] ] };
+    const keyboard = {
+      inline_keyboard: [
+        [ { text: langDict.back, callback_data: "back_dashboard" }, { text: langDict.mainMenu, callback_data: "main_menu" } ]
+      ]
+    };
     await sendOrEdit(chatId, token, editMessageId, content, keyboard);
   }
 }
@@ -187,23 +189,13 @@ async function sendOrEdit(chatId, token, messageId, text, replyMarkup) {
   });
 }
 
-// Fixed Webhook Setup Route (Forced HTTPS)
 app.get("/set-webhook", async (req, res) => {
   const token = req.query.token;
-  if (!token) return res.status(400).json({ error: "Token is required. Use /set-webhook?token=YOUR_BOT_TOKEN" });
-
+  if (!token) return res.status(400).json({ error: "Token is required" });
   const host = req.get('host');
   const webhookUrl = `https://${host}/webhook?token=${token}`;
-  
   const result = await tg("setWebhook", token, { url: webhookUrl });
   res.json({ webhookUrl, result });
-});
-
-app.get("/delete-webhook", async (req, res) => {
-  const token = req.query.token;
-  if (!token) return res.status(400).json({ error: "Token is required" });
-  const result = await tg("deleteWebhook", token);
-  res.json({ result });
 });
 
 app.post("/webhook", async (req, res) => {
@@ -215,13 +207,7 @@ app.post("/webhook", async (req, res) => {
     const chatId = update.message.chat.id;
     const text = update.message.text ? update.message.text.trim() : "";
     if (text.startsWith("/start")) {
-      sessions[chatId] = {
-        lang: 'en',
-        step: 'lang',
-        pairIdx: 0,
-        tfIdx: 0,
-        deviceId: String(Math.floor(10000000000000000000 + Math.random() * 9000000000000000000))
-      };
+      sessions[chatId] = { lang: 'en', step: 'lang', pairIdx: 0, tfIdx: 0 };
       await renderState(chatId, token);
     }
   }
@@ -232,19 +218,26 @@ app.post("/webhook", async (req, res) => {
     const messageId = cq.message.message_id;
     const data = cq.data;
 
-    let session = sessions[chatId] || { lang: 'en', step: 'lang', pairIdx: 0, tfIdx: 0, deviceId: String(chatId).padStart(20, '0') };
+    let session = sessions[chatId] || { lang: 'en', step: 'lang', pairIdx: 0, tfIdx: 0 };
     sessions[chatId] = session;
     const langDict = LANGS[session.lang] || LANGS.en;
 
     if (data.startsWith("lang|")) {
       session.lang = data.split("|")[1];
       session.step = 'dashboard';
+    } else if (data === "check_join") {
+      const isJoined = await checkMembership(chatId, token);
+      if (!isJoined) {
+        await tg("answerCallbackQuery", token, { callback_query_id: cq.id, text: "❌ Please join the official channel first!", show_alert: true });
+        return res.sendStatus(200);
+      } else {
+        await tg("answerCallbackQuery", token, { callback_query_id: cq.id, text: "✅ Channel membership verified!" });
+      }
     } else if (data === "next_pair") {
       session.pairIdx = (session.pairIdx + 1) % PAIRS.length;
     } else if (data === "prev_pair") {
       session.pairIdx = (session.pairIdx - 1 + PAIRS.length) % PAIRS.length;
     } else if (data === "next_tf") {
-      session.tfIdx = (session.tfIdx + 1) / TIMEFRAMES.length | 0; // fixed index increment
       session.tfIdx = (session.tfIdx + 1) % TIMEFRAMES.length;
     } else if (data === "prev_tf") {
       session.tfIdx = (session.tfIdx - 1 + TIMEFRAMES.length) % TIMEFRAMES.length;
@@ -252,12 +245,19 @@ app.post("/webhook", async (req, res) => {
       session.step = 'rules';
     } else if (data === "show_faq") {
       session.step = 'faq';
-    } else if (data === "back_dashboard") {
+    } else if (data === "back_dashboard" || data === "main_menu") {
       session.step = 'dashboard';
     } else if (data.startsWith("copy|")) {
-      await tg("answerCallbackQuery", token, { callback_query_id: cq.id, text: "ID copied!", show_alert: true });
+      const uid = data.split("|")[1];
+      await tg("answerCallbackQuery", token, { callback_query_id: cq.id, text: `📋 ID Copied: ${uid}\nSend this to admin to unlock!`, show_alert: true });
       return res.sendStatus(200);
     } else if (data === "get_signal") {
+      const isUnlocked = await checkExternalUnlock(chatId);
+      if (!isUnlocked) {
+        await tg("answerCallbackQuery", token, { callback_query_id: cq.id, text: "❌ Your account is locked! Get approval from admin.", show_alert: true });
+        return res.sendStatus(200);
+      }
+
       await tg("answerCallbackQuery", token, { callback_query_id: cq.id, text: langDict.analyzing });
       const pair = PAIRS[session.pairIdx];
       const tf = TIMEFRAMES[session.tfIdx];
@@ -276,7 +276,7 @@ app.post("/webhook", async (req, res) => {
       const keyboard = {
         inline_keyboard: [
           [ { text: "⚡ Generate Another", callback_data: "get_signal" } ],
-          [ { text: langDict.back, callback_data: "back_dashboard" } ]
+          [ { text: langDict.mainMenu, callback_data: "main_menu" } ]
         ]
       };
       await sendOrEdit(chatId, token, messageId, signalMsg, keyboard);
