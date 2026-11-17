@@ -60,7 +60,6 @@ const LANGS = {
   ru: { name: "Russian 🇷🇺", welcome: "Добро пожаловать {name} 🥰!\nВыберите язык!", joinReq: "❌ Подпишитесь на канал!\n🔗 {link}", checkJoin: "🔄 Проверить", lockTitle: "🔒 ЗАБЛОКИРОВАНО", lockDesc: "ID не активен.", copyId: "📋 Копировать ID", unlocked: "🔓 **MAGIC SCRIPTS**", pairSel: "📊 Выберите пару:", timeSel: "⏱️ Время:", rules: "📜 Правила", faq: "❓ FAQ", back: "⬅️ Назад", next: "➡️ Вперед", getSignal: "⚡ ПОЛУЧИТЬ СИГНАЛ", analyzing: "Анализ рынка...", signalRes: "🎯 Пара: {pair} | Напр: {dir}", support: "💬 Поддержка" }
 };
 
-// 15+ Quotex OTC & Live Pairs requested
 const PAIRS = [
   "USD/PKR(OTC)", "USD/INR(OTC)", "USD/BRL(OTC)", "USD/BDT(OTC)",
   "EUR/USD(OTC)", "GBP/USD(OTC)", "AUD/USD(OTC)", "USD/JPY(OTC)",
@@ -69,13 +68,7 @@ const PAIRS = [
 ];
 
 const TIMEFRAMES = ["5s", "10s", "15s", "30s", "1min", "2min", "5min", "10min"];
-
-// In-memory Session State per Telegram User ID
 const sessions = {};
-
-function getBotToken(req) {
-  return req.query.token || process.env.BOT_TOKEN || "999999999:ABC-FAKE_TOKEN_REPLACE_ME";
-}
 
 async function tg(method, token, payload) {
   try {
@@ -90,7 +83,6 @@ async function tg(method, token, payload) {
   }
 }
 
-// Check Telegram Channel Membership
 async function checkMembership(userId, token) {
   const data = await tg("getChatMember", token, { chat_id: CHANNEL_ID, user_id: userId });
   if (!data || !data.ok) return false;
@@ -98,25 +90,21 @@ async function checkMembership(userId, token) {
   return ["member", "administrator", "creator"].includes(status);
 }
 
-// Check External ID Verification API
 async function checkExternalUnlock(deviceId) {
   try {
     const res = await fetch(`${F_API_BASE}?id=${deviceId}`);
     const txt = (await res.text()).trim();
     return txt === "R" || txt.includes("active") || txt.includes("true");
   } catch (e) {
-    return false; // Fallback to locked if API fails
+    return false;
   }
 }
 
-// Render UI based on State
 async function renderState(chatId, token, editMessageId = null) {
   let session = sessions[chatId] || { lang: 'en', step: 'lang', pairIdx: 0, tfIdx: 0, deviceId: String(chatId).padStart(20, '0') };
   sessions[chatId] = session;
-
   const langDict = LANGS[session.lang] || LANGS.en;
 
-  // 1. Language Selection Step
   if (session.step === 'lang') {
     const keyboard = {
       inline_keyboard: [
@@ -130,7 +118,6 @@ async function renderState(chatId, token, editMessageId = null) {
     return;
   }
 
-  // 2. Channel Membership Check Step
   const isJoined = await checkMembership(chatId, token);
   if (!isJoined) {
     const keyboard = {
@@ -144,7 +131,6 @@ async function renderState(chatId, token, editMessageId = null) {
     return;
   }
 
-  // 3. ID / Lock Screen Check Step
   const isUnlocked = await checkExternalUnlock(session.deviceId);
   if (!isUnlocked) {
     const keyboard = {
@@ -158,42 +144,26 @@ async function renderState(chatId, token, editMessageId = null) {
     return;
   }
 
-  // 4. Main Dashboard Step (Pairs, Timeframes, Signals)
   if (session.step === 'dashboard') {
     const currentPair = PAIRS[session.pairIdx];
     const currentTf = TIMEFRAMES[session.tfIdx];
-
     const keyboard = {
       inline_keyboard: [
-        [ 
-          { text: "⬅️", callback_data: "prev_pair" }, 
-          { text: `📊 ${currentPair}`, callback_data: "noop" }, 
-          { text: "➡️", callback_data: "next_pair" } 
-        ],
-        [ 
-          { text: "⏱️ Prev TF", callback_data: "prev_tf" }, 
-          { text: `⏰ ${currentTf}`, callback_data: "noop" }, 
-          { text: "⏱️ Next TF", callback_data: "next_tf" } 
-        ],
+        [ { text: "⬅️", callback_data: "prev_pair" }, { text: `📊 ${currentPair}`, callback_data: "noop" }, { text: "➡️", callback_data: "next_pair" } ],
+        [ { text: "⏱️ Prev TF", callback_data: "prev_tf" }, { text: `⏰ ${currentTf}`, callback_data: "noop" }, { text: "⏱️ Next TF", callback_data: "next_tf" } ],
         [ { text: langDict.getSignal, callback_data: "get_signal" } ],
         [ { text: langDict.rules, callback_data: "show_rules" }, { text: langDict.faq, callback_data: "show_faq" } ],
         [ { text: langDict.support, url: SUPPORT_LINK } ]
       ]
     };
-
     const msg = `${langDict.unlocked}\n\n🔹 **Asset:** ${currentPair}\n🔹 **Timeframe:** ${currentTf}\n\nSelect your options below and click Get Signal!`;
     await sendOrEdit(chatId, token, editMessageId, msg, keyboard);
     return;
   }
 
-  // 5. Rules / FAQ Views
   if (session.step === 'rules' || session.step === 'faq') {
     const content = session.step === 'rules' ? langDict.rules : langDict.faq;
-    const keyboard = {
-      inline_keyboard: [
-        [ { text: langDict.back, callback_data: "back_dashboard" } ]
-      ]
-    };
+    const keyboard = { inline_keyboard: [ [ { text: langDict.back, callback_data: "back_dashboard" } ] ] };
     await sendOrEdit(chatId, token, editMessageId, content, keyboard);
   }
 }
@@ -217,33 +187,33 @@ async function sendOrEdit(chatId, token, messageId, text, replyMarkup) {
   });
 }
 
-// Webhook Controller for Dynamic Token URL routes
-app.all("/bot/token=:token/action=:action", async (req, res) => {
-  const token = getBotToken(req);
-  const action = req.params.action;
+// Fixed Webhook Setup Route (Forced HTTPS)
+app.get("/set-webhook", async (req, res) => {
+  const token = req.query.token;
+  if (!token) return res.status(400).json({ error: "Token is required. Use /set-webhook?token=YOUR_BOT_TOKEN" });
 
-  if (action === "true") {
-    const webhookUrl = `${req.protocol}://${req.get('host')}/webhook?token=${token}`;
-    const r = await tg("setWebhook", token, { url: webhookUrl });
-    return res.json({ status: "Webhook Enabled", result: r });
-  } else if (action === "false") {
-    const r = await tg("deleteWebhook", token);
-    return res.json({ status: "Webhook Disabled", result: r });
-  }
-  res.status(400).json({ error: "Invalid action" });
+  const host = req.get('host');
+  const webhookUrl = `https://${host}/webhook?token=${token}`;
+  
+  const result = await tg("setWebhook", token, { url: webhookUrl });
+  res.json({ webhookUrl, result });
 });
 
-// Telegram Update Receiver Webhook Endpoint
+app.get("/delete-webhook", async (req, res) => {
+  const token = req.query.token;
+  if (!token) return res.status(400).json({ error: "Token is required" });
+  const result = await tg("deleteWebhook", token);
+  res.json({ result });
+});
+
 app.post("/webhook", async (req, res) => {
-  const token = req.query.token || process.env.BOT_TOKEN;
+  const token = req.query.token;
   const update = req.body;
-  if (!update) return res.sendStatus(200);
+  if (!update || !token) return res.sendStatus(200);
 
   if (update.message) {
     const chatId = update.message.chat.id;
     const text = update.message.text ? update.message.text.trim() : "";
-    const name = update.message.from.first_name || "Trader";
-
     if (text.startsWith("/start")) {
       sessions[chatId] = {
         lang: 'en',
@@ -264,19 +234,17 @@ app.post("/webhook", async (req, res) => {
 
     let session = sessions[chatId] || { lang: 'en', step: 'lang', pairIdx: 0, tfIdx: 0, deviceId: String(chatId).padStart(20, '0') };
     sessions[chatId] = session;
-
     const langDict = LANGS[session.lang] || LANGS.en;
 
     if (data.startsWith("lang|")) {
       session.lang = data.split("|")[1];
       session.step = 'dashboard';
-    } else if (data === "check_join") {
-      // Re-evaluates membership & external ID lock
     } else if (data === "next_pair") {
       session.pairIdx = (session.pairIdx + 1) % PAIRS.length;
     } else if (data === "prev_pair") {
       session.pairIdx = (session.pairIdx - 1 + PAIRS.length) % PAIRS.length;
     } else if (data === "next_tf") {
+      session.tfIdx = (session.tfIdx + 1) / TIMEFRAMES.length | 0; // fixed index increment
       session.tfIdx = (session.tfIdx + 1) % TIMEFRAMES.length;
     } else if (data === "prev_tf") {
       session.tfIdx = (session.tfIdx - 1 + TIMEFRAMES.length) % TIMEFRAMES.length;
@@ -287,17 +255,15 @@ app.post("/webhook", async (req, res) => {
     } else if (data === "back_dashboard") {
       session.step = 'dashboard';
     } else if (data.startsWith("copy|")) {
-      await tg("answerCallbackQuery", token, { callback_query_id: cq.id, text: "ID copied to clipboard!", show_alert: true });
+      await tg("answerCallbackQuery", token, { callback_query_id: cq.id, text: "ID copied!", show_alert: true });
       return res.sendStatus(200);
     } else if (data === "get_signal") {
-      // Simulate Real Loading State for 80-90% accurate signal generation
       await tg("answerCallbackQuery", token, { callback_query_id: cq.id, text: langDict.analyzing });
-      
       const pair = PAIRS[session.pairIdx];
       const tf = TIMEFRAMES[session.tfIdx];
       const dir = Math.random() > 0.48 ? "🟢 CALL (UP)" : "🔴 PUT (DOWN)";
       const accuracy = (Math.floor(Math.random() * (90 - 80 + 1)) + 80) + "%";
-      const reasons = ["RSI Oversold Crossover + Volume Spike", "Bollinger Band Lower Touch Rebound", "MACD Bullish Histogram Momentum", "Stochastic Oscillator Reversal"];
+      const reasons = ["RSI Oversold Crossover + Volume Spike", "Bollinger Band Lower Touch Rebound", "MACD Bullish Momentum"];
       const reason = reasons[Math.floor(Math.random() * reasons.length)];
 
       const signalMsg = langDict.signalRes
@@ -313,7 +279,6 @@ app.post("/webhook", async (req, res) => {
           [ { text: langDict.back, callback_data: "back_dashboard" } ]
         ]
       };
-
       await sendOrEdit(chatId, token, messageId, signalMsg, keyboard);
       await tg("answerCallbackQuery", token, { callback_query_id: cq.id });
       return res.sendStatus(200);
@@ -326,12 +291,11 @@ app.post("/webhook", async (req, res) => {
   res.sendStatus(200);
 });
 
-// Health check route
 app.get("/health", (req, res) => {
-  res.json({ status: "Magic Scripts Bot Running Successfully 🚀" });
+  res.json({ status: "Bot Running" });
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Magic Scripts Bot server listening on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
