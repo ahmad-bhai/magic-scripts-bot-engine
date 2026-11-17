@@ -1,0 +1,14 @@
+{
+  "name": "magic-scripts-bot",
+  "version": "1.0.0",
+  "description": "Magic Scripts Advanced Telegram Trading Bot",
+  "main": "api/bot.js",
+  "scripts": {
+    "start": "node api/bot.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "node-fetch": "^2.7.0",
+    "dotenv": "^16.4.5"
+  }
+}
